@@ -73,7 +73,7 @@ export default function SharePage() {
     // Add a white background and some padding for the download
     const fullSvg = svgString.replace(
       "<svg ",
-      `<svg xmlns="http://www.w3.org/2000/svg" style="background:#fdf6f0;padding:16px;border-radius:20px;" `
+      `<svg style="background:#fdf6f0;padding:16px;border-radius:20px;" `
     );
 
     const blob = new Blob([fullSvg], { type: "image/svg+xml" });

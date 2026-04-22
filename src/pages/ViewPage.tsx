@@ -32,7 +32,7 @@ export default function ViewPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 grainy-bg overflow-hidden relative">
       <div className="atmospheric-bg" />
-      
+
       <div className="relative z-10 w-full flex flex-col items-center">
         <AnimatePresence>
           {!showGift ? (
@@ -43,7 +43,7 @@ export default function ViewPage() {
               exit={{ opacity: 0 }}
               className="text-center"
             >
-              <h1 className="text-4xl font-serif italic text-rose-900 leading-tight">Someone made this<br/>special for you</h1>
+              <h1 className="text-4xl font-serif italic text-rose-900 leading-tight">Made with care<br />special for you</h1>
             </motion.div>
           ) : (
             <motion.div
@@ -54,40 +54,40 @@ export default function ViewPage() {
               className="flex flex-col items-center w-full max-w-6xl"
             >
               <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 w-full relative">
-                  <div className="relative group shrink-0">
-                      <motion.div
-                          className="absolute inset-0 bg-accent/20 rounded-full blur-[100px]"
-                          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                          transition={{ duration: 5, repeat: Infinity }}
-                      />
-                      <motion.div 
-                        className="relative z-10"
-                        animate={{ 
-                            y: [0, -15, 0],
-                            rotate: [0, 1, 0]
-                        }}
-                        transition={{ 
-                            duration: 6, 
-                            repeat: Infinity, 
-                            ease: "easeInOut" 
-                        }}
-                      >
-                          <BouquetPreview state={state} size="lg" interactive />
-                      </motion.div>
-                  </div>
-  
-                  {state.message && (
-                      <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.8, duration: 1 }}
-                          className="relative w-full max-w-[340px] lg:-ml-8"
-                      >
-                          <NotebookMessage message={state.message} />
-                      </motion.div>
-                  )}
+                <div className="relative group shrink-0">
+                  <motion.div
+                    className="absolute inset-0 bg-accent/20 rounded-full blur-[100px]"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="relative z-10"
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 1, 0]
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <BouquetPreview state={state} size="lg" interactive />
+                  </motion.div>
+                </div>
+
+                {state.message && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 1 }}
+                    className="relative w-full max-w-[340px] lg:-ml-8"
+                  >
+                    <NotebookMessage message={state.message} />
+                  </motion.div>
+                )}
               </div>
-  
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
