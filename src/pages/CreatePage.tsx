@@ -102,7 +102,7 @@ export default function CreatePage() {
               />
             ))}
           </div>
-          <div className="w-12 text-xs font-medium opacity-40 uppercase tracking-[0.3em] sm:block hidden pointer-events-none">
+          <div className="w-12 text-xs font-medium opacity-40 uppercase tracking-[0.3em] sm:block hidden pointer-events-none" style={{ marginRight: "27px" }}>
             {step < 6 ? "Crafting" : "Complete"}
           </div>
         </header>
@@ -433,10 +433,10 @@ export default function CreatePage() {
               (step === 2 && state.greenery.length < 2)
             }
             className={`px-16 py-5 rounded-full text-lg font-medium shadow-xl transition-all duration-300 min-w-[240px] flex items-center justify-center gap-3 ${isSaving ||
-                (step === 1 && state.flowers.length < 6) ||
-                (step === 2 && state.greenery.length < 2)
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-rose-500 hover:bg-rose-600 text-white shadow-rose-200"
+              (step === 1 && state.flowers.length < 6) ||
+              (step === 2 && state.greenery.length < 2)
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "bg-rose-500 hover:bg-rose-600 text-white shadow-rose-200"
               }`}
           >
             {isSaving ? (
