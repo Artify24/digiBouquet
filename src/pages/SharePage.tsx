@@ -70,19 +70,36 @@ export default function SharePage() {
   const handleDownloadQR = () => {
     if (!svgString) return;
 
-    // Add a white background and some padding for the download
-    const fullSvg = svgString.replace(
-      "<svg ",
-      `<svg style="background:#fdf6f0;padding:16px;border-radius:20px;" `
-    );
+    const size = 360;
+    const padding = 24;
+    const canvas = document.createElement("canvas");
+    canvas.width = size + padding * 2;
+    canvas.height = size + padding * 2;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const blob = new Blob([fullSvg], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `digibouquet-${slug}.svg`;
-    a.click();
-    URL.revokeObjectURL(url);
+    // Draw warm background
+    ctx.fillStyle = "#fdf6f0";
+    ctx.roundRect(0, 0, canvas.width, canvas.height, 20);
+    ctx.fill();
+
+    // Convert SVG string to an image and draw it
+    const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, padding, padding, size, size);
+      URL.revokeObjectURL(url);
+
+      // Download as PNG
+      const pngUrl = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.href = pngUrl;
+      a.download = `digibouquet-${slug}.png`;
+      a.click();
+    };
+    img.onerror = () => URL.revokeObjectURL(url);
+    img.src = url;
   };
 
   if (!slug) return null;
@@ -278,7 +295,7 @@ export default function SharePage() {
               className="flex-1 flex items-center justify-center gap-2 bg-white text-rose-700 py-4 rounded-2xl font-medium shadow-md border border-rose-100 hover:shadow-lg hover:border-rose-200 transition-all disabled:opacity-40"
             >
               <Download size={16} />
-              Download QR
+              Save QR as PNG
             </motion.button>
           </div>
         </motion.div>

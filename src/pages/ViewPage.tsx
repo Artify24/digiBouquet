@@ -43,7 +43,7 @@ export default function ViewPage() {
               exit={{ opacity: 0 }}
               className="text-center"
             >
-              <h1 className="text-4xl font-serif italic text-rose-900 leading-tight">Made with care<br />special for you</h1>
+              <h1 className="text-4xl font-serif italic text-rose-900 leading-tight">Someone created this<br />especially for you 🌸</h1>
             </motion.div>
           ) : (
             <motion.div
